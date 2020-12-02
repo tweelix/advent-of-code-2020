@@ -1,0 +1,2 @@
+print("solution 1:", len([line for line in [(*line[0].split("-"), line[1].replace(":", ""), line[2]) for line in [line.split() for line in open("input").readlines() if len(line) > 0]] if int(line[0]) <= line[3].count(line[2]) <= int(line[1])]))
+print("solution 2:", len([line for line in [(*line[0].split("-"), line[1].replace(":", ""), line[2]) for line in [line.split() for line in open("input").readlines() if len(line) > 0]] if (line[3][int(line[0])-1], line[3][int(line[1])-1]).count(line[2]) == 1]))
