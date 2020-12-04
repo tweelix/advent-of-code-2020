@@ -1,1 +1,4 @@
 *.o
+*.hidden
+.DS_Store
+.vscode/*
