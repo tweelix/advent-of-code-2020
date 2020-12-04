@@ -8,3 +8,6 @@ One Line Python List Comprehensions
 
 ### Day 3:
 Lua
+
+### Day 4:
+I had no time, so just terrible python don't even look at it
