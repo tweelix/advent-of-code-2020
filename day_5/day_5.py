@@ -1,5 +1,5 @@
 seats = [
-    int(line[:-4].replace("B", "1").replace("F", "0"), 2) * 8 + int(line[-4:].replace("R", "1").replace("L", "0"), 2)
+    int(line.replace("B", "1").replace("F", "0").replace("R", "1").replace("L", "0"), 2)
     for line in open("input").readlines()
 ]
 print("Task 1", max(seats))
