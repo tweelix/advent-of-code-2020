@@ -34,10 +34,10 @@ with open("input") as f:
         for child in contents.split(","):
             number_in_parent = int(child.split()[0])
             child_name = " ".join(child.split()[1:-1])
-            if child_name in all_bags.keys():
-                all_bags[child_name].parents.append(all_bags[parent_bag_name])
-            else:
+            if child_name not in all_bags.keys():
                 all_bags[child_name] = Bag(child_name, parents=[all_bags[parent_bag_name]])
+            else:
+                all_bags[child_name].parents.append(all_bags[parent_bag_name])
             all_bags[parent_bag_name].children.append((number_in_parent, all_bags[child_name]))
 
 
