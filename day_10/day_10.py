@@ -1,6 +1,5 @@
 from collections import Counter
 from functools import reduce
-from itertools import accumulate
 
 with open("input") as f:
     input = [int(line) for line in f.readlines()]
