@@ -1,5 +1,6 @@
 from copy import deepcopy
 from typing import List, Tuple
+import itertools
 
 
 class Tile:
@@ -70,7 +71,6 @@ class Game:
         print()
 
 
-initial_game_state = []
 with open("input") as f:
     textinput = [list(c.replace("\n", "")) for c in f.readlines()]
 
@@ -78,11 +78,14 @@ initial_game_state = []
 for i, line in enumerate(textinput):
     state_line = []
     for j, char in enumerate(line):
-        neighbours = []
-        for x in range(-1, 2):
-            for y in range(-1, 2):
-                if (x != 0 or y != 0) and 0 <= i + x < len(textinput) and 0 <= j + y < len(line):
-                    neighbours.append((i + x, j + y))
+        if char == ".":
+            state_line.append(Tile(char, []))
+            continue
+        neighbours = [
+            (i + x, j + y)
+            for x, y in itertools.product(range(-1, 2), repeat=2)
+            if (x != 0 or y != 0) and 0 <= i + x < len(textinput) and 0 <= j + y < len(line)
+        ]
         state_line.append(Tile(char, neighbours))
     initial_game_state.append(state_line)
 
