@@ -33,14 +33,13 @@ for values in other_tickets_values:
         else:
             possible_fields_by_position[i] = possible_fields_by_position[i].intersection(values_dict[value])
 
-good_possible_fields_by_position = {}
-while possible_fields_by_position.keys() != good_possible_fields_by_position.keys():
-    for i, (pos, fields) in enumerate(possible_fields_by_position.items()):
+good_possible_fields = set()
+while len(possible_fields_by_position.keys()) != len(good_possible_fields):
+    for i, (_, fields) in enumerate(possible_fields_by_position.items()):
         if len(fields) == 1:
-            good_possible_fields_by_position[pos] = fields
-        for _pos, _fields in good_possible_fields_by_position.items():
-            if _pos != pos:
-                possible_fields_by_position[i] -= _fields
+            good_possible_fields = good_possible_fields.union(fields)
+        else:
+            possible_fields_by_position[i] -= good_possible_fields
 
 task2_result = reduce(
     operator.mul,
