@@ -10,17 +10,17 @@ class Tile:
 
 
 class Game:
-    def __init__(self, initial_state: List[Tile], occupied_tolerance: int = 4):
-        self._game_state: List[Tile] = initial_state
-        self._game_state_1: List[Tile] = deepcopy(initial_state)
+    def __init__(self, initial_state: List[List[Tile]], occupied_tolerance: int = 4):
+        self._game_state: List[List[Tile]] = initial_state
+        self._game_state_1: List[List[Tile]] = deepcopy(initial_state)
         self.occupied_tolerance = occupied_tolerance
         self.swapped: bool = False
         self.occupied: int = 0
 
-    def _get_game_state(self) -> List[Tile]:
+    def _get_game_state(self) -> List[List[Tile]]:
         return self._game_state if not self.swapped else self._game_state_1
 
-    def _get_alt_game_state(self) -> List[Tile]:
+    def _get_alt_game_state(self) -> List[List[Tile]]:
         return self._game_state_1 if not self.swapped else self._game_state
 
     def swap(self) -> None:
