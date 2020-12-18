@@ -9,13 +9,13 @@ operator_lut = {
     "*": operator.mul,
 }
 
-def evaluate(a):
+def evaluate(a: list):
     symbols = a[1::2]
     values = a[::2]
     iterator = zip(symbols, values[1:])
     return reduce(r, iterator, values[0])
 
-def r(a, b) -> int:
+def r(a, b):
     _a = a
     if isinstance(a, list):
         _a = evaluate(a)
@@ -25,12 +25,12 @@ def r(a, b) -> int:
     return operator_lut[operator](int(_a), int(value))
 
 
-def r2(a:str, b: Union[str, list]) -> int:
+def r2(a, b):
     if isinstance(b, list):
         return a + str(evaluate2(b))
     return a + b
 
-def evaluate2(input: list) -> int:
+def evaluate2(input):
     input_str = reduce(r2, input, "")
     return reduce(operator.mul, (sum(int(i) for i in a.split("+")) for a in input_str.split("*")))
 
