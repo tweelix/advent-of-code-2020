@@ -35,7 +35,7 @@ for values in other_tickets_values:
 
 good_possible_fields = set()
 while len(possible_fields_by_position.keys()) != len(good_possible_fields):
-    for i, (_, fields) in enumerate(possible_fields_by_position.items()):
+    for i, fields in possible_fields_by_position.items():
         if len(fields) == 1:
             good_possible_fields = good_possible_fields.union(fields)
         else:
