@@ -1,6 +1,7 @@
 import numpy as np
 from typing import List
 
+
 class Tile:
     def __init__(self, tile_id, content):
         self.tile_id = tile_id
@@ -131,14 +132,11 @@ def find_monsters(image, monster_mask):
             return n_monsters
 
 
-tiles: List[Tile] = []
-
 with open("input") as f:
-    for tilestring in f.read().split("\n\n"):
-        name_str = tilestring.split("\n")[0]
-        content = tilestring.split("\n")[1:]
-        tile_id = int(name_str.replace(":", "").split()[1])
-        tiles.append(Tile(tile_id=tile_id, content=content))
+    tiles: List[Tile] = [
+        Tile(tile_id=int(tilestring.split("\n")[0].replace(":", "").split()[1]), content=tilestring.split("\n")[1:])
+        for tilestring in f.read().split("\n\n")
+    ]
 
 
 ordered_tiles = get_tiles_in_correct_order(tiles)
@@ -151,7 +149,6 @@ print(
     * ordered_tiles[0][-1].tile_id
     * ordered_tiles[-1][-1].tile_id,
 )
-
 
 monster = """                  # 
 #    ##    ##    ###
